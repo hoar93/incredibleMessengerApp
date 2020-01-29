@@ -65,12 +65,12 @@ public class MessageService {
         Root<Message> m = cQuery.from(Message.class);
         //TODO predicate listával megcsinálni ue-zt, akármi is az
 
-        if (!StringUtils.isEmpty(author)) {
+        /*if (!StringUtils.isEmpty(author)) {
             cQuery.select(m).where(cb.equal(m.get(Message_.AUTHOR), author));
         }
         if (!StringUtils.isEmpty(text)) {
             cQuery.select(m).where(cb.equal(m.get(Message_.TEXT), text));
-        }
+        }*/
         //TODO proba
         /*if (!id.equals(null)) {
             cQuery.select(m).where(cb.equal(m.get(Message_.id), id));
@@ -94,7 +94,7 @@ public class MessageService {
         */
         //TODO EDDIG predicate séma
 
-
+/*
 
 
         if (orderBy.equals("author")){
@@ -104,7 +104,7 @@ public class MessageService {
                 cQuery.orderBy(cb.asc(m.get(Message_.author)));
             }
         }
-
+*/
         //TODO minden alapján szűrjön
 
         /*
@@ -206,7 +206,7 @@ public class MessageService {
         newM.setAuthor(m.getAuthor());
         return newM;
     }
-    @Transactional
+    /*@Transactional
     public List<MessageAllDto> getAllMessages() {
         List<Message> allMs= em.createQuery("SELECT m FROM Message m").getResultList();
         List<MessageAllDto> allDtoMs = new ArrayList<>();
@@ -214,7 +214,7 @@ public class MessageService {
             allDtoMs.add(mToAllDto(m));
         }
         return allDtoMs;
-    }
+    }*/
 
     @Transactional
     public Message createMessage(@Valid MessageDto x) {
