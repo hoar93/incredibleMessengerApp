@@ -1,0 +1,20 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head data-th-replace="menu :: msghead"></head>
+<body>
+<nav data-th-replace="menu :: msgmenu"></nav>
+
+<div class="container">
+    <h1>Topik létrehozása</h1>
+    <form data-th-action="@{/createtopic}" method="POST" data-th-object="${topic}">
+
+        <div class="form-group">
+            <label for="title">Title</label>
+            <textarea id="title" data-th-field="*{title}"  data-th-errorclass="is-invalid" class="form-control" placeholder="Enter title"></textarea>
+            <div class="invalid-feedback" data-th-if="${#fields.hasErrors('title')}" data-th-errors="*{title}">Title Error</div>
+
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+</body>
+</html>
