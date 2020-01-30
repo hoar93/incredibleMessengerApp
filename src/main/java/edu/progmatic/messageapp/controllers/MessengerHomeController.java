@@ -22,13 +22,14 @@ public class MessengerHomeController {
         this.messengerConversationService = messengerConversationService;
     }
 
+    //TODO kinda jo, de a bejelentkezés után is ide kéne redirectelni
     @RequestMapping(value = {"/", "/messengerHome"}, method = GET)
-    public String messengerHome(Model model){
-        model.addAttribute("greeting", "szia" );
+    public String messengerHome(Model model) {
+        model.addAttribute("greeting", "szia");
         return "messengerHome";
     }
 
-    //TODO nincs KÉSZ az oldal, ez a beszélgetések listája
+    //TODO kinda jo
     @RequestMapping(value = "/messengerMessages", method = GET)
     public String messengerMessages(Model model) {
         List<Conversation> allConvs = messengerConversationService.getAllConvs();
@@ -37,12 +38,13 @@ public class MessengerHomeController {
         return "messengerMessages";
     }
 
-    //TODO nincs KÉSZ az oldal
+    //TODO jónak jó, de dupla. msgs controllerben.
+    /*
     @RequestMapping(value = {"/createConversation"}, method = GET)
     public String createConversation() {
         return "createConversation";
     }
-
+    */
 
 
 }

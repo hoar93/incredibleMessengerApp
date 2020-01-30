@@ -21,45 +21,40 @@ public class MessengerMessagesController {
         this.messengerConversationService = messengerConversationService;
     }
 
+    @PostMapping("/createconversationmessage")
+    public String createConversationMessage(
+            @ModelAttribute("conversationMessage") ConversationMessage m,
+            Model model) {
+        Conversation conversation = m.getConversation();
+        messengerConversationService.createConvMessage(conversation, m);
 
-    @RequestMapping(path = "/messengerMessages/{convId}", method = RequestMethod.GET)
+        return null; //TODO redirect
+    }
+
+
+    @GetMapping(path = "/messengerMessages/{convId}") //TODO JO
     public String showOneMessages(
             @PathVariable("convId") Long convId,
             Model model) {
 
-        //TODO nincs KÉSZ a metódus
-        //List<ConversationMessage> conversationMessages = messengerConversationService.getMessageList(convId);
         Conversation conversation = messengerConversationService.getConversation(convId);
         ConversationMessage convm = new ConversationMessage();
+        convm.setConversation(conversation);
         model.addAttribute("conversationMessage", convm);
-        model.addAttribute("conversation",conversation);
+        model.addAttribute("conversation", conversation);
 
         return "oneConversation";
     }
 
-
-
-    @PostMapping("/createConvMessage")
-    public String showCreateConvMess(ConversationMessage conversationMessage, Model model) {
-        model.addAttribute("conversationMessage", conversationMessage);
-        //conversationMessage.setConversation(); TODO itt tartok
-        messengerConversationService.createConvMessage(conversationMessage);
-        System.out.println("mivan");
-        return "messengerMessages" /*conversationMessage.getConversation().getId()*/;
-    }
-
-
-    @GetMapping("/createconversation")
+    @GetMapping("/createConversation") //TODO kinda jo, egyiket törölni. talán nem ezt?
     public String showCreateConv(Model model) {
         model.addAttribute("conversation", new Conversation());
         return "createConversation";
     }
 
-    @PostMapping("/createconversation")
-    public String createConv(@Valid @ModelAttribute("conversation")Conversation conversation) {
-
+    @PostMapping("/createconversation") //TODO kinda jo
+    public String createConv(@Valid @ModelAttribute("conversation") Conversation conversation) {
         messengerConversationService.createConv(conversation);
-
         return "messengerMessages" + conversation.getId();
     }
 

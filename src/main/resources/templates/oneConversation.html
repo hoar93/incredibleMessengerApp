@@ -31,21 +31,19 @@
             <td data-th-text="${{message.creationDate}}"></td>
         </tr>
     </table>
+
     <h1>Új üzenets</h1>
-    <form data-th-action="@{/createConvMessage}" method="POST" data-th-object="${conversationMessage}">
-
+    <form data-th-action="@{/createconversationmessage}" method="POST" data-th-object="conversationMessage">
         <div class="form-group">
-             <label for="text">Üzenet szövege</label>
+            <label for="text">Új üzenet: </label>
+            <textarea data-th-field="*{text}" id="text" class="form-control" placeholder="Üzenet"></textarea>
 
-             <textarea data-th-field="${conversationMessage.text}" id="text" data-th-errorclass="is-invalid" class="form-control" placeholder="Üzenet"></textarea>
 
-         </div>
-
-        <div class="mt-4">
-            <button type="submit" class="btn btn-primary">Beküld</button>
-            <a data-th-href="@{/createConvMessage}"> Üzenet küldése </a>
         </div>
+
+        <button type="submit" class="btn btn-primary">Beküld</button>
     </form>
+
 </div>
 </body>
 </html>

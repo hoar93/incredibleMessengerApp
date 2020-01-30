@@ -23,7 +23,7 @@ public class TopicController {
     public TopicController(TopicService topicService) {
         this.topicService = topicService;
     }
-
+/*
     @GetMapping("/createtopic")
     public String showCreate(Model model) {
         model.addAttribute("topic", new Topic());
@@ -31,7 +31,7 @@ public class TopicController {
 
     }
 
- /*   @PostMapping("/createtopic")
+    @PostMapping("/createtopic")
     public String createTopic(@Valid @ModelAttribute("topic") Topic topic, BindingResult result) {
         if (result.hasErrors()) {
             return "createTopic";

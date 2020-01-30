@@ -68,7 +68,7 @@ public class MessageController {
 
         return "createMessage";
     }
-/*
+    /*
     @PostMapping(path = "/createmessage")
     public String createMessage(@Valid @ModelAttribute("message") Message m, Model model, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {

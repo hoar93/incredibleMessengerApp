@@ -32,9 +32,9 @@ public class MessengerConversationService {
     }
 
     @Transactional
-    public void createConvMessage(ConversationMessage conversationMessage) {
+    public void createConvMessage(Conversation conv, ConversationMessage conversationMessage) {
+        conversationMessage.setConversation(conv);
         em.persist(conversationMessage);
-
     }
 
     @Transactional
