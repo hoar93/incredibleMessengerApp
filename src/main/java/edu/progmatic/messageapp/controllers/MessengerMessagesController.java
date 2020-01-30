@@ -23,11 +23,10 @@ public class MessengerMessagesController {
 
     @PostMapping(path = "/createconversationmessage")
     public String createConversationMessage(
-            @ModelAttribute("conversationMessage") ConversationMessage m) {
-        Conversation conversation = m.getConversation();
-        messengerConversationService.createConvMessage(conversation, m);
-
-        return "/messengerMessages/" + m.getConversation().getId(); //TODO redirect
+            @ModelAttribute("conversationMessage") ConversationMessage m,
+            @ModelAttribute("conversation") Conversation c) {
+        messengerConversationService.createConvMessage(c, m);
+        return "/messengerMessages" + m.getConversation().getId(); //TODO redirect
     }
 
 
