@@ -39,10 +39,11 @@ public class MessengerMessagesController {
         conversationIdThatINeed = convId;
         List<ConversationMessage> convMessages = messengerConversationService.getMessageList(convId);
         Conversation conversation = messengerConversationService.getConversation(convId);
-        //ConversationMessage convm = new ConversationMessage();
-        //convm.setConversation(conversation);
+        ConversationMessage convm = new ConversationMessage();
+        convm.setConversation(conversation);
         model.addAttribute("conversationMessages", convMessages);
         model.addAttribute("conversation", conversation);
+        model.addAttribute("message", convm);
 
         return "oneConversation";
     }

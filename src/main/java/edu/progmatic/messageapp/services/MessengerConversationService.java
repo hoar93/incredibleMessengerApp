@@ -45,9 +45,9 @@ public class MessengerConversationService {
         return allConvs;
     }
 
-    @Transactional //TODO ez faszság
+    @Transactional //TODO ez faszság left join fetch
     public List<ConversationMessage> getMessageList(Long convId) {
-        List<ConversationMessage> oneConversation = em.createQuery("SELECT m FROM ConversationMessage m left join fetch where m.conversation.id = :convId")
+        List<ConversationMessage> oneConversation = em.createQuery("SELECT m FROM ConversationMessage m join fetch m.conversation where m.conversation.id = :convId")
                 .setParameter("convId", convId)
                 .getResultList();
 
