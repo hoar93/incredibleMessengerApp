@@ -47,7 +47,7 @@ public class MessengerConversationService {
 
     @Transactional //TODO ez faszság
     public List<ConversationMessage> getMessageList(Long convId) {
-        List<ConversationMessage> oneConversation = em.createQuery("SELECT m FROM ConversationMessage m left join fetch where m.conversation.id = :convId where m.conversation.id like = :convId")
+        List<ConversationMessage> oneConversation = em.createQuery("SELECT m FROM ConversationMessage m left join fetch where m.conversation.id = :convId")
                 .setParameter("convId", convId)
                 .getResultList();
 
