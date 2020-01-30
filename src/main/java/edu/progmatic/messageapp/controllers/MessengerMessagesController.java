@@ -21,14 +21,13 @@ public class MessengerMessagesController {
         this.messengerConversationService = messengerConversationService;
     }
 
-    @PostMapping("/createconversationmessage")
+    @PostMapping(path = "/createconversationmessage")
     public String createConversationMessage(
-            @ModelAttribute("conversationMessage") ConversationMessage m,
-            Model model) {
+            @ModelAttribute("conversationMessage") ConversationMessage m) {
         Conversation conversation = m.getConversation();
         messengerConversationService.createConvMessage(conversation, m);
 
-        return null; //TODO redirect
+        return "/messengerMessages/" + m.getConversation().getId(); //TODO redirect
     }
 
 
