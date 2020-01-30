@@ -28,18 +28,20 @@ public class TopicController {
     public String showCreate(Model model) {
         model.addAttribute("topic", new Topic());
         return "createTopic";
+
     }
 
-    @PostMapping("/createtopic")
+ /*   @PostMapping("/createtopic")
     public String createTopic(@Valid @ModelAttribute("topic") Topic topic, BindingResult result) {
         if (result.hasErrors()) {
             return "createTopic";
         }
 
         topicService.createTopic(topic);
-        return "redirect:/messages";
-    }
+        return "redirect:/conve";
 
+    }
+*/
     @GetMapping("/topics")
     public String listTopics(Model model) {
         List<Topic> topics = topicService.getAllTopics();

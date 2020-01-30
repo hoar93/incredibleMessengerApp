@@ -206,7 +206,7 @@ public class MessageService {
         newM.setAuthor(m.getAuthor());
         return newM;
     }
-    /*@Transactional
+    @Transactional
     public List<MessageAllDto> getAllMessages() {
         List<Message> allMs= em.createQuery("SELECT m FROM Message m").getResultList();
         List<MessageAllDto> allDtoMs = new ArrayList<>();
@@ -214,7 +214,7 @@ public class MessageService {
             allDtoMs.add(mToAllDto(m));
         }
         return allDtoMs;
-    }*/
+    }
 
     @Transactional
     public Message createMessage(@Valid MessageDto x) {

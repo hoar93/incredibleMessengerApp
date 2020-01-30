@@ -22,10 +22,10 @@ public class HomeController {
         greetings.add("#jóreggeltjószurkolást");
     }
 
-    @RequestMapping(value = {"/", "/home"}, method = GET)
+    /*@RequestMapping(value = {"/", "/home"}, method = GET)
     public String home(Model model){
         model.addAttribute("greeting", greetings.get(random.nextInt(greetings.size())) );
         return "home";
-    }
+    }*/
 
 }

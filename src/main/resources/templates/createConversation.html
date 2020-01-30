@@ -2,7 +2,28 @@
 <head data-th-replace="messengerMenu :: newhead"></head>
 <body>
 <nav data-th-replace="messengerMenu :: newmenu"></nav>
+<div class="container">
+    <h1>Új beszélgetés</h1>
+    <form data-th-action="@{/createConversation}" method="POST" data-th-object="${conversation}">
 
+       <!-- <div class="form-group">
+            <label for="text">Üzenet szövege</label>
+            <textarea data-th-field="*{text}" id="text" data-th-errorclass="is-invalid" class="form-control" placeholder="Üzenet"></textarea>
+
+
+        </div> -->
+        <div class="form-group">
+            <label data-th-for="topic">Kinek:</label>
+            <textarea data-th-field="*{convPartner}" id="convPartner", class="form-control"> </textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Beküld</button>
+        <div class="mt-4">
+            <a data-th-href="@{/createconversation}">Beszélgetés létrehozása </a>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

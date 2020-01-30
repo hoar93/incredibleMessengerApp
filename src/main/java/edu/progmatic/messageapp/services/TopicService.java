@@ -24,7 +24,6 @@ public class TopicService {
     @Transactional
     public void createTopic(Topic topic) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         topic.setAuthor(currentUser.getUsername());
         topicRepository.save(topic);
     }

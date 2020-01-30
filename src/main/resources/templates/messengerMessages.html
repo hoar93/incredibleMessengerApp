@@ -9,22 +9,17 @@
     <table class="table">
         <thead>
         <tr>
-            <td>Szerző</td>
-            <td>Szöveg</td>
-            <td>Topic</td>
-            <td>Dátum</td>
-            <td data-sec-authorize="hasRole('ADMIN')">Deleted</td>
-            <td></td>
-            <td data-sec-authorize="hasRole('ADMIN')"></td>
-        </tr>
+            <td>id</td>
+            <td>beszélgetés indító</td>
+            <td>beszélgetés partner</td>
+            </tr>
         </thead>
         <tbody id="msgtbody">
-        <tr data-th-each="cmsg: ${cmsgList}">
-            <td style="display: none" class="msgId" data-th-text="${cmsg.id}"></td>
-            <td data-th-text="${msg.author}"></td>
-            <td data-th-text="${msg.text}"></td>
-            <td data-th-text="${msg.topic.title}"></td>
-            <td data-th-text="${{msg.creationDate}}"></td>
+        <tr data-th-each="conv: ${allconvs}">
+            <!--<td data-th-text="${conv.id}"></td> -->
+            <td><a data-th-href="@{'/messengerMessages/'+${conv.id}}" data-th-text="${conv.convPartner}"></a></td>
+            <td data-th-text="${conv.convStarter}"></td>
+            <td data-th-text="${conv.convPartner}"></td>
         </tr>
         </tbody>
     </table>

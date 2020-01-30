@@ -12,16 +12,27 @@ public class Conversation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank
-    private Long starterId;
-
-    @NotNull
-    @NotBlank
-    private Long partnerId;
-
     @OneToMany
     private List<ConversationMessage> conversationMessages;
+
+    private String convStarter;
+    private String convPartner;
+
+    public String getConvStarter() {
+        return convStarter;
+    }
+
+    public void setConvStarter(String convStarter) {
+        this.convStarter = convStarter;
+    }
+
+    public String getConvPartner() {
+        return convPartner;
+    }
+
+    public void setConvPartner(String convPartner) {
+        this.convPartner = convPartner;
+    }
 
     public Long getId() {
         return id;
@@ -29,22 +40,6 @@ public class Conversation {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getStarterId() {
-        return starterId;
-    }
-
-    public void setStarterId(Long starterId) {
-        this.starterId = starterId;
-    }
-
-    public Long getPartnerId() {
-        return partnerId;
-    }
-
-    public void setPartnerId(Long partnerId) {
-        this.partnerId = partnerId;
     }
 
     public List<ConversationMessage> getConversationMessages() {

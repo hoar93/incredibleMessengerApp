@@ -25,8 +25,7 @@ and open the template in the editor.
         </tr>
         </thead>
         <tr data-th-each="topic: ${topics}">
-            <td><a data-th-href="@{'/topics/'+${topic.id}}" data-th-text="${topic.id}"></a></
-            /td>
+            <td><a data-th-href="@{'/topics/'+${topic.id}}" data-th-text="${topic.id}"></a></td>
             <td data-th-text="${topic.title}"></td>
             <td data-th-text="${topic.author}"></td>
             <td data-sec-authorize="hasRole('ADMIN')">

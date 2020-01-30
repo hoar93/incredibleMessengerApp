@@ -14,12 +14,10 @@ public class ConversationMessage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
-    @NotBlank
+
     private String author;
 
-    @NotNull
-    @NotBlank
+
     private String text;
 
     @DateTimeFormat(pattern = "yyyy/MMMM/dd HH:mm")
