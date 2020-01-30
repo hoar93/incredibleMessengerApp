@@ -27,7 +27,7 @@ public class MessengerMessagesController {
             @ModelAttribute("conversationMessage") ConversationMessage m) {
 
         messengerConversationService.createConvMessage(conversationIdThatINeed, m);
-        return "/messengerMessages/" + conversationIdThatINeed; //TODO redirect
+        return ("redirect:/messengerMessages/" + conversationIdThatINeed); //TODO redirect
     }
 
 
