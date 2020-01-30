@@ -15,6 +15,7 @@ import javax.validation.Valid;
 public class MessengerMessagesController {
 
     private MessengerConversationService messengerConversationService;
+    private Long conversationIdThatINeed;
 
     @Autowired
     public MessengerMessagesController(MessengerConversationService messengerConversationService) {
@@ -23,10 +24,10 @@ public class MessengerMessagesController {
 
     @PostMapping(path = "/createconversationmessage")
     public String createConversationMessage(
-            @ModelAttribute("conversationMessage") ConversationMessage m,
-            @ModelAttribute("conversation") Conversation c) {
-        messengerConversationService.createConvMessage(c, m);
-        return "/messengerMessages" + m.getConversation().getId(); //TODO redirect
+            @ModelAttribute("conversationMessage") ConversationMessage m) {
+
+        messengerConversationService.createConvMessage(conversationIdThatINeed, m);
+        return "/messengerMessages" + conversationIdThatINeed; //TODO redirect
     }
 
 
@@ -34,7 +35,7 @@ public class MessengerMessagesController {
     public String showOneMessages(
             @PathVariable("convId") Long convId,
             Model model) {
-
+        conversationIdThatINeed = convId;
         Conversation conversation = messengerConversationService.getConversation(convId);
         ConversationMessage convm = new ConversationMessage();
         convm.setConversation(conversation);

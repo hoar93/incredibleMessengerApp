@@ -34,7 +34,7 @@
 
     <h1>Új üzenets</h1>
     <form data-th-action="@{/createconversationmessage}" method="POST" data-th-object="${conversationMessage}">
-        <div class="form-group" data-th-object="${conversation}">
+        <div class="form-group">
             <label for="text">Új üzenet: </label>
             <textarea data-th-field="*{text}" id="text" class="form-control" placeholder="Üzenet"></textarea>
 

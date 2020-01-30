@@ -32,8 +32,9 @@ public class MessengerConversationService {
     }
 
     @Transactional
-    public void createConvMessage(Conversation conv, ConversationMessage conversationMessage) {
-        conversationMessage.setConversation(conv);
+    public void createConvMessage(Long convId, ConversationMessage conversationMessage) {
+
+        conversationMessage.setConversation(em.find(Conversation.class, convId));
         em.persist(conversationMessage);
     }
 
