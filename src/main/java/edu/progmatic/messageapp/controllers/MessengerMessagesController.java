@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class MessengerMessagesController {
@@ -36,6 +37,7 @@ public class MessengerMessagesController {
             @PathVariable("convId") Long convId,
             Model model) {
         conversationIdThatINeed = convId;
+        List<ConversationMessage> convMessages = messengerConversationService.getMessageList(convId);
         Conversation conversation = messengerConversationService.getConversation(convId);
         ConversationMessage convm = new ConversationMessage();
         convm.setConversation(conversation);
