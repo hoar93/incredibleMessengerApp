@@ -1,22 +1,14 @@
 package edu.progmatic.messageapp.services;
 
-import edu.progmatic.messageapp.dto.ConversationDto;
 import edu.progmatic.messageapp.modell.Conversation;
 import edu.progmatic.messageapp.modell.ConversationMessage;
-import edu.progmatic.messageapp.modell.Topic;
 import edu.progmatic.messageapp.modell.User;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;

@@ -5,6 +5,8 @@ import edu.progmatic.messageapp.modell.Conversation;
 import edu.progmatic.messageapp.modell.ConversationMessage;
 import edu.progmatic.messageapp.services.MessengerConversationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,7 +25,9 @@ public class MessengerMessagesController {
     public MessengerMessagesController(MessengerConversationService messengerConversationService) {
         this.messengerConversationService = messengerConversationService;
     }
-
+/*
+    @MessageMapping("/chat")
+    @SendTo("/topic/messages") */
     @PostMapping(path = "/createconversationmessage")
     public String createConversationMessage(
             @ModelAttribute("conversationMessage") ConversationMessage m) {
