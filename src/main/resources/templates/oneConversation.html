@@ -12,7 +12,7 @@
         </tr>
 
     </table>
-    <h1>Beszélgetés:</h1>
+
     <div data-th-if="${conversationMessages.empty}">
         Nincsenek üzenetek!
     </div>
@@ -33,7 +33,7 @@
         </tr>
     </table>
 
-    <h1>Új üzenets</h1>
+    <h2>Új üzenet</h2>
     <form data-th-action="@{/createconversationmessage}" method="POST" data-th-object="${message}">
         <div class="form-group">
             <label for="text">Új üzenet: </label>

@@ -20,12 +20,18 @@ public class MessengerConversationService {
     EntityManager em;
 
     @Transactional
+    public List<User> allUser() {
+        List<User> userList = em.createQuery("select u from User u").getResultList();
+        return userList;
+    }
+
+    @Transactional
     public Conversation getConversation(Long convId) {
         Conversation oneConversation = em.find(Conversation.class, convId);
         return oneConversation;
     }
 
-    @Transactional
+    @Transactional //TODO már nem szar
     public void createConvMessage(Long convId, ConversationMessage conversationMessage) {
 
         String loggedInUserName = SecurityContextHolder.getContext().getAuthentication().getName();

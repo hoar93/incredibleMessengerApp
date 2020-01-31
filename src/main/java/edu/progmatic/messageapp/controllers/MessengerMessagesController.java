@@ -33,7 +33,7 @@ public class MessengerMessagesController {
             @ModelAttribute("conversationMessage") ConversationMessage m) {
 
         messengerConversationService.createConvMessage(conversationIdThatINeed, m);
-        return ("redirect:/messengerMessages/" + conversationIdThatINeed); //TODO redirect
+        return ("redirect:/messengerMessages/" + conversationIdThatINeed); //TODO redirecteljen
     }
 
 
@@ -46,9 +46,9 @@ public class MessengerMessagesController {
         Conversation conversation = messengerConversationService.getConversation(convId);
         ConversationMessage convm = new ConversationMessage();
         convm.setConversation(conversation);
-        model.addAttribute("conversationMessages", convMessages);
-        model.addAttribute("conversation", conversation);
-        model.addAttribute("message", convm);
+        model.addAttribute("conversationMessages", convMessages); // convmess küldő fogadó adatok kiírása
+        model.addAttribute("conversation", conversation); //starter kiírása
+        model.addAttribute("message", convm); //az új üzenet new Convm
 
         return "oneConversation";
     }
@@ -56,12 +56,15 @@ public class MessengerMessagesController {
     @GetMapping("/createConversation") //TODO kinda jo, egyiket törölni. talán nem ezt?
     public String showCreateConv(Model model) {
         model.addAttribute("conversation", new Conversation()); //TODO dto 1.1 NE
+        model.addAttribute("users", messengerConversationService.allUser());
         return "createConversation";
     }
 
     @PostMapping("/createConversation") //TODO kinda jo
-    public String createConv(@Valid @ModelAttribute("conversation") Conversation conversation) { //TODO dto 1.2
+    public String createConv(@Valid @ModelAttribute("conversation") Conversation conversation,
+                                @ModelAttribute("firstMess") ConversationMessage mess) { //TODO dto 1.2
         messengerConversationService.createConv(conversation);
+        //messengerConversationService.createConvMessage(conversationIdThatINeed, mess);
         return "redirect:/messengerMessages/" + conversation.getId();
     }
 

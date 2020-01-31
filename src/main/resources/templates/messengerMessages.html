@@ -4,8 +4,8 @@
 <nav data-th-replace="messengerMenu :: newmenu"></nav>
 
 <div class="container">
-    <!-- TODO EZ A BESZÉLGETÉSEK LISTÁJA később. változókat átírni-->
-    <h1>BeszélgetésEK</h1>
+
+    <h1>Beszélgetések</h1>
     <table class="table">
         <thead>
         <tr>
@@ -17,7 +17,7 @@
         <tbody id="msgtbody">
         <tr data-th-each="conv: ${allconvs}">
             <!--<td data-th-text="${conv.id}"></td> -->
-            <td><a data-th-href="@{'/messengerMessages/'+${conv.id}}" data-th-text="${conv.convPartner}"></a></td>
+            <td><a data-th-href="@{'/messengerMessages/'+${conv.id}}" data-th-text="${conv.id}"></a></td>
             <td data-th-text="${conv.convStarter}"></td>
             <td data-th-text="${conv.convPartner}"></td>
         </tr>

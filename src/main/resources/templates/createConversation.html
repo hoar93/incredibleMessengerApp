@@ -14,7 +14,11 @@
         </div> -->
         <div class="form-group">
             <label data-th-for="topic">Kinek:</label>
-            <textarea data-th-field="*{convPartner}" id="convPartner", class="form-control"> </textarea>
+
+            <select data-th-field="*{convPartner}" class="form-control">
+                <option data-th-each="user : ${users}" data-th-value="${user.id}" data-th-text="${user.username}">Topic</option>
+            </select>
+          <!--  <textarea data-th-field="*{firstMess}" id="text" autocomplete="on" class="form-control"> </textarea> -->
         </div>
 
 
