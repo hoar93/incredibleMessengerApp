@@ -159,10 +159,7 @@ public class MessageService {
     }
     @Transactional
     public void modifyMessage(Long id, String text) throws InterruptedException {
-        //MessageDto m = self.getMessageToModify(id);
         self.getMessageM(id).setText(text);
-        //m.setText(text);
-
     }
 
     @Transactional
@@ -224,8 +221,6 @@ public class MessageService {
         String loggedInUserName = SecurityContextHolder.getContext().getAuthentication().getName();
         m.setAuthor(loggedInUserName);
         m.setCreationDate(LocalDateTime.now());
-//        m.setId((long) messages.size());
-        //m.setTopic(topic);
         em.persist(m);
         return m;
     }

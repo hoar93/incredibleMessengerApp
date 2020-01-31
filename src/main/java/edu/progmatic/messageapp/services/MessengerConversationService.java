@@ -1,5 +1,6 @@
 package edu.progmatic.messageapp.services;
 
+import edu.progmatic.messageapp.dto.ConversationDto;
 import edu.progmatic.messageapp.modell.Conversation;
 import edu.progmatic.messageapp.modell.ConversationMessage;
 import edu.progmatic.messageapp.modell.Topic;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +36,36 @@ public class MessengerConversationService {
     @Transactional
     public void createConvMessage(Long convId, ConversationMessage conversationMessage) {
 
+        String loggedInUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+
+        conversationMessage.setAuthor(loggedInUserName);
+        String partner = getConversation(convId).getConvPartner();
+
+        if (loggedInUserName.equals(conversationMessage.getAuthor())) {
+            conversationMessage.setPartner(partner);
+        }
+        if(loggedInUserName.equals(partner)) {
+            conversationMessage.setPartner(getConversation(convId).getConvStarter());
+        }
+
+        conversationMessage.setCreationDate(LocalDateTime.now());
         conversationMessage.setConversation(em.find(Conversation.class, convId));
         em.persist(conversationMessage);
+    }
+
+    @Transactional
+    public List<Conversation> gettAllForThem() {
+        List<Conversation> all = getAllConvs();
+        List<Conversation> them = new ArrayList<>();
+        String loggedInUserName = SecurityContextHolder.getContext().getAuthentication().getName();
+        for (Conversation conversation : all) {
+            if (conversation.getConvStarter().equals(loggedInUserName)) {
+                them.add(conversation);
+            } else if(conversation.getConvPartner().equals(loggedInUserName)) {
+                them.add(conversation);
+            }
+        }
+        return them;
     }
 
     @Transactional
@@ -58,7 +88,7 @@ public class MessengerConversationService {
     }
 
     @Transactional
-    public void createConv(Conversation conversation) {
+    public void createConv(Conversation conversation) { //TODO dto 1.3
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         conversation.setConvStarter(currentUser.getUsername());
         em.persist(conversation);

@@ -1,5 +1,6 @@
 package edu.progmatic.messageapp.controllers;
 
+import edu.progmatic.messageapp.dto.ConversationDto;
 import edu.progmatic.messageapp.modell.Conversation;
 import edu.progmatic.messageapp.modell.ConversationMessage;
 import edu.progmatic.messageapp.services.MessengerConversationService;
@@ -50,14 +51,14 @@ public class MessengerMessagesController {
 
     @GetMapping("/createConversation") //TODO kinda jo, egyiket törölni. talán nem ezt?
     public String showCreateConv(Model model) {
-        model.addAttribute("conversation", new Conversation());
+        model.addAttribute("conversation", new Conversation()); //TODO dto 1.1 NE
         return "createConversation";
     }
 
-    @PostMapping("/createconversation") //TODO kinda jo
-    public String createConv(@Valid @ModelAttribute("conversation") Conversation conversation) {
+    @PostMapping("/createConversation") //TODO kinda jo
+    public String createConv(@Valid @ModelAttribute("conversation") Conversation conversation) { //TODO dto 1.2
         messengerConversationService.createConv(conversation);
-        return "messengerMessages" + conversation.getId();
+        return "redirect:/messengerMessages/" + conversation.getId();
     }
 
 }

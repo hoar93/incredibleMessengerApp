@@ -32,8 +32,9 @@ public class MessengerHomeController {
     //TODO kinda jo
     @RequestMapping(value = "/messengerMessages", method = GET)
     public String messengerMessages(Model model) {
-        List<Conversation> allConvs = messengerConversationService.getAllConvs();
-        model.addAttribute("allconvs", allConvs);
+        //List<Conversation> allConvs = messengerConversationService.getAllConvs();
+        List<Conversation> convsINeed = messengerConversationService.gettAllForThem();
+        model.addAttribute("allconvs", convsINeed);
 
         return "messengerMessages";
     }

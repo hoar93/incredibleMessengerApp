@@ -17,6 +17,8 @@ public class ConversationMessage {
 
     private String author;
 
+    private String partner;
+
 
     private String text;
 
@@ -27,6 +29,14 @@ public class ConversationMessage {
     private Conversation conversation;
 
     public ConversationMessage() {
+    }
+
+    public String getPartner() {
+        return partner;
+    }
+
+    public void setPartner(String partner) {
+        this.partner = partner;
     }
 
     public Conversation getConversation() {

@@ -19,13 +19,14 @@
     <table data-th-if="${!conversationMessages.empty}" class="table table-striped table-bordered">
         <thead>
         <tr>
-            <th>Id</th>
+
             <th>Üzenet</th>
             <th>Küldő</th>
             <th>Dátum</th>
         </tr>
         </thead>
         <tr data-th-each="message: ${conversationMessages}">
+
             <td data-th-text="${message.text}"></td>
             <td data-th-text="${message.author}"></td>
             <td data-th-text="${{message.creationDate}}"></td>
